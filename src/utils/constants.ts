@@ -10,7 +10,7 @@ export const sidebarNavItems: SidebarNavItemProps[] = [
   {
     title: "Workflows",
     icon: WorkflowIcon,
-    url: "/workflows",
+    url: "/workflow",
   },
   {
     title: "Settings",
