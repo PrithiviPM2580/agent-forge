@@ -45,3 +45,16 @@ payload,
 
 return response.data;
 }
+
+INSERT INTO "Workflow" (id, "userId", "name", "description", "updatedAt")
+VALUES
+(gen_random_uuid()::text, 'user-001', 'Email Automation', 'Automatically send emails based on workflow triggers.', CURRENT_TIMESTAMP),
+(gen_random_uuid()::text, 'user-001', 'Lead Management', 'Manage and organize incoming leads.', CURRENT_TIMESTAMP),
+(gen_random_uuid()::text, 'user-002', 'Customer Onboarding', 'Automate the customer onboarding process.', CURRENT_TIMESTAMP),
+(gen_random_uuid()::text, 'user-002', 'Invoice Processing', 'Process and organize invoices automatically.', CURRENT_TIMESTAMP),
+(gen_random_uuid()::text, 'user-003', 'Slack Notifications', 'Send notifications to Slack when events occur.', CURRENT_TIMESTAMP),
+(gen_random_uuid()::text, 'user-003', 'Data Backup', 'Automatically back up important application data.', CURRENT_TIMESTAMP),
+(gen_random_uuid()::text, 'user-004', 'Order Processing', 'Handle order processing and status updates.', CURRENT_TIMESTAMP),
+(gen_random_uuid()::text, 'user-004', 'Support Ticket', 'Automate support ticket creation and assignment.', CURRENT_TIMESTAMP),
+(gen_random_uuid()::text, 'user-005', 'Weekly Report', 'Generate and distribute weekly reports.', CURRENT_TIMESTAMP),
+(gen_random_uuid()::text, 'user-005', 'New User Welcome', 'Send a welcome message when a new user registers.', CURRENT_TIMESTAMP);

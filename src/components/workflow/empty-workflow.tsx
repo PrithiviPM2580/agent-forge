@@ -1,13 +1,11 @@
 import { WorkflowIcon } from "lucide-react";
 import {
   Empty,
-  EmptyContent,
   EmptyDescription,
   EmptyHeader,
   EmptyMedia,
   EmptyTitle,
 } from "@/components/ui/empty";
-import { Button } from "../ui/button";
 
 export default function EmptyWorkflow() {
   return (

@@ -1,5 +1,5 @@
 import CreateWorkflowDialog from "@/components/workflow/create-workflow";
-import EmptyWorkflow from "@/components/workflow/empty-workflow";
+import Workflows from "@/components/workflow/workflows";
 import { requireAuth } from "@/lib/require-auth";
 
 export default async function Page() {
@@ -17,7 +17,7 @@ export default async function Page() {
           </div>
           <CreateWorkflowDialog />
         </div>
-        <EmptyWorkflow />
+        <Workflows />
       </div>
     </div>
   );

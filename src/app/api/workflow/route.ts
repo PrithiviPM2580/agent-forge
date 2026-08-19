@@ -1,6 +1,41 @@
-import { auth } from "@/lib/auth";
 import { getServerSession } from "@/lib/auth-session";
 import prisma from "@/lib/prisma-client";
+
+export async function GET() {
+  try {
+    const session = await getServerSession();
+
+    if (!session) {
+      return Response.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    const workflows = await prisma.workflow.findMany({
+      where: {
+        userId: session.user.id,
+      },
+      select: {
+        id: true,
+        name: true,
+        description: true,
+        createdAt: true,
+      },
+      orderBy: {
+        updatedAt: "desc",
+      },
+    });
+
+    return Response.json({
+      success: true,
+      data: workflows,
+    });
+  } catch (error) {
+    console.error("Error fetching workflows:", error);
+    return Response.json(
+      { error: "An error occurred while fetching workflows" },
+      { status: 500 },
+    );
+  }
+}
 
 export async function POST(req: Request) {
   try {
