@@ -1,7 +1,6 @@
-import { Button } from "@/components/ui/button";
+import CreateWorkflowDialog from "@/components/workflow/create-workflow";
 import EmptyWorkflow from "@/components/workflow/empty-workflow";
 import { requireAuth } from "@/lib/require-auth";
-import { PlusIcon } from "lucide-react";
 
 export default async function Page() {
   await requireAuth();
@@ -16,10 +15,7 @@ export default async function Page() {
               Build a chaat agent workflow with custom logic and tools
             </p>
           </div>
-          <Button>
-            <PlusIcon size={18} />
-            <span>New Workflow</span>
-          </Button>
+          <CreateWorkflowDialog />
         </div>
         <EmptyWorkflow />
       </div>

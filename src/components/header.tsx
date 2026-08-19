@@ -1,22 +1,38 @@
 "use client";
 
+import { LogOutIcon, MoonIcon, SunIcon, UserIcon } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
-import { cn } from "@/lib/utils";
-import { Button } from "./ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { LogOutIcon, MoonIcon, SunIcon } from "lucide-react";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { toast } from "@/components/ui/toast";
 import { authClient } from "@/lib/auth-client";
-import { UserIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { Button } from "./ui/button";
 
 export default function Header() {
+  const router = useRouter();
   const { theme, setTheme } = useTheme();
   const { data: user, isPending } = authClient.useSession();
+
+  async function handleLogout() {
+    await authClient.signOut({
+      fetchOptions: {
+        onSuccess: () => {
+          router.push("/signin");
+          toast.add({
+            type: "success",
+            description: "Logged out successfully",
+          });
+        },
+      },
+    });
+  }
 
   const isDarkMode = theme === "dark";
   return (
@@ -57,7 +73,10 @@ export default function Header() {
             </DropdownMenuTrigger>
 
             <DropdownMenuContent align="end" className="rounded-sm! w-40">
-              <DropdownMenuItem className="rounded-sm! cursor-pointer">
+              <DropdownMenuItem
+                className="rounded-sm! cursor-pointer"
+                onClick={handleLogout}
+              >
                 <LogOutIcon className="size-4" />
                 <span>Logout</span>
               </DropdownMenuItem>

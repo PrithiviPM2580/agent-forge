@@ -22,7 +22,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { toast } from "@/components/ui/toast";
 import { authClient } from "@/lib/auth-client";
-import { signUpSchema, type SignUpSchema } from "@/schema/auth";
+import { type SignUpSchema, signUpSchema } from "@/schema/auth";
 
 export default function SignUpForm() {
   const router = useRouter();
