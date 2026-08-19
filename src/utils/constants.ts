@@ -1,4 +1,10 @@
-import { type LucideIcon, SettingsIcon, WorkflowIcon } from "lucide-react";
+import {
+  type LucideIcon,
+  PencilIcon,
+  PlayIcon,
+  SettingsIcon,
+  WorkflowIcon,
+} from "lucide-react";
 
 interface SidebarNavItemProps {
   title: string;
@@ -16,5 +22,26 @@ export const sidebarNavItems: SidebarNavItemProps[] = [
     title: "Settings",
     icon: SettingsIcon,
     url: "/settings",
+  },
+];
+
+export type ViewType = "edit" | "preview";
+
+interface TabItemProps {
+  id: ViewType;
+  label: string;
+  icon: LucideIcon;
+}
+
+export const tabs: TabItemProps[] = [
+  {
+    id: "edit",
+    label: "Edit",
+    icon: PencilIcon,
+  },
+  {
+    id: "preview",
+    label: "Preview",
+    icon: PlayIcon,
   },
 ];

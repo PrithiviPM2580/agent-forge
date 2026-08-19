@@ -1,10 +1,10 @@
 "use client";
 
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { useWorkflows } from "@/hooks/workflow/use-workflow";
 import { Skeleton } from "../ui/skeleton";
 import EmptyWorkflow from "./empty-workflow";
 import WorkflowCard from "./workflow-card";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 export default function Workflows() {
   const { data: workflows, isPending } = useWorkflows();
