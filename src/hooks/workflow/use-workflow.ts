@@ -1,6 +1,7 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery, useSuspenseQuery } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { toast } from "@/components/ui/toast";
+import type { Workflow } from "@/generated/prisma/client";
 import { api } from "@/lib/axios";
 
 interface CreateWorkflowPayload {
@@ -8,13 +9,25 @@ interface CreateWorkflowPayload {
   description?: string;
 }
 
+export function useWorkflows() {
+  return useQuery({
+    queryKey: ["workflows"],
+
+    queryFn: async () => {
+      return await api
+        .get<{ data: Workflow[] }>("/api/workflow")
+        .then((res) => res.data.data);
+    },
+  });
+}
+
 export function useCreateWorkflow() {
   //   const router = useRouter();
 
   return useMutation({
     mutationFn: async ({ name, description }: CreateWorkflowPayload) => {
-      return api
-        .post("/workflow", { name, description })
+      return await api
+        .post("/api/workflow", { name, description })
         .then((res) => res.data);
     },
     onSuccess: (data) => {
