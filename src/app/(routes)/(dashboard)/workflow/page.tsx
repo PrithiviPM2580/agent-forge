@@ -1,8 +1,11 @@
 import { Button } from "@/components/ui/button";
 import EmptyWorkflow from "@/components/workflow/empty-workflow";
+import { requireAuth } from "@/lib/require-auth";
 import { PlusIcon } from "lucide-react";
 
-export default function Page() {
+export default async function Page() {
+  await requireAuth();
+
   return (
     <div className="min-h-auto">
       <div className="py-4">

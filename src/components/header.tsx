@@ -11,9 +11,12 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { LogOutIcon, MoonIcon, SunIcon } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { authClient } from "@/lib/auth-client";
+import { UserIcon } from "lucide-react";
 
 export default function Header() {
   const { theme, setTheme } = useTheme();
+  const { data: user, isPending } = authClient.useSession();
 
   const isDarkMode = theme === "dark";
   return (
@@ -41,10 +44,15 @@ export default function Header() {
             />
           </Button>
           <DropdownMenu>
-            <DropdownMenuTrigger className="rounded-full outline-none">
+            <DropdownMenuTrigger
+              className="rounded-full outline-none"
+              disabled={isPending}
+            >
               <Avatar>
-                <AvatarImage src="https://github.com/shadcn.png" />
-                <AvatarFallback>CN</AvatarFallback>
+                <AvatarImage src={user?.user.image ?? "U"} alt="User" />
+                <AvatarFallback>
+                  {user?.user.name?.charAt(0).toUpperCase() ?? <UserIcon />}
+                </AvatarFallback>
               </Avatar>
             </DropdownMenuTrigger>
 
