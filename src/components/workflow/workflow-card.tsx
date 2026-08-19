@@ -1,5 +1,6 @@
 import { format } from "date-fns";
 import { WorkflowIcon } from "lucide-react";
+import { useRouter } from "next/navigation";
 import {
   Card,
   CardContent,
@@ -8,7 +9,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import type { Workflow } from "@/generated/prisma/client";
-import { useRouter } from "next/navigation";
 
 export default function WorkflowCard({ workflow }: { workflow: Workflow }) {
   const router = useRouter();

@@ -47,3 +47,15 @@ export function useCreateWorkflow() {
     },
   });
 }
+
+export function useWorkflowByid(workflowId: string) {
+  return useQuery({
+    queryKey: ["workflow", workflowId],
+    queryFn: async () => {
+      return await api
+        .get<{ data: Workflow }>(`/api/workflow/${workflowId}`)
+        .then((res) => res.data.data);
+    },
+    enabled: !!workflowId,
+  });
+}
