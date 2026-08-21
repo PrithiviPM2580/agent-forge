@@ -1,7 +1,9 @@
 "use client";
 
+import { ReactFlowProvider } from "@xyflow/react";
 import { useParams } from "next/navigation";
 import { Spinner } from "@/components/ui/spinner";
+import WorkflowCanvas from "@/components/workflow/workflow-canvas";
 import WorkflowHeader from "@/components/workflow/workflow-header";
 import { WorkflowProvider } from "@/context/workflow-context";
 import { useWorkflowByid } from "@/hooks/workflow/use-workflow";
@@ -17,24 +19,28 @@ export default function Page() {
   }
   return (
     <div className="min-h-screen bg-background">
-      <WorkflowProvider>
-        <div className="flex flex-col h-screen relative">
-          <WorkflowHeader
-            name={workflow?.name}
-            workflowId={workflow?.id}
-            isLoading={isPending}
-          />
-          <div className="flex relative overflow-hidden">
-            {isPending ? (
-              <div className="flex-center h-screen w-full">
-                <Spinner className="size-12 text-primary" />
-              </div>
-            ) : (
-              <></>
-            )}
+      <ReactFlowProvider>
+        <WorkflowProvider>
+          <div className="flex flex-col h-screen relative">
+            <WorkflowHeader
+              name={workflow?.name}
+              workflowId={workflow?.id}
+              isLoading={isPending}
+            />
+            <div className="flex relative overflow-hidden">
+              {isPending ? (
+                <div className="flex-center h-screen w-full">
+                  <Spinner className="size-12 text-primary" />
+                </div>
+              ) : (
+                <>
+                  <WorkflowCanvas />
+                </>
+              )}
+            </div>
           </div>
-        </div>
-      </WorkflowProvider>
+        </WorkflowProvider>
+      </ReactFlowProvider>
     </div>
   );
 }
