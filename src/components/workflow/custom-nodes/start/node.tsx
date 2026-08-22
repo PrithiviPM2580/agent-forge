@@ -1,6 +1,7 @@
 import type { NodeProps } from "@xyflow/react";
 import { PlayIcon } from "lucide-react";
 import WorkflowNode from "../../workflow-node";
+import StartNodeSetting from "./setting";
 
 export default function StartNode(props: NodeProps) {
   const { data, id, selected } = props;
@@ -18,7 +19,7 @@ export default function StartNode(props: NodeProps) {
       color={bgColor}
       settingTitle="Start Node Settings"
       settingDescription="The workflow starting point"
-      settingComponent={<></>}
+      settingComponent={<StartNodeSetting nodeId={id} />}
     />
   );
 }
