@@ -22,6 +22,7 @@ import {
   NodeTypeEnum,
 } from "@/lib/workflow/node-config";
 import { TOOL_MODE_ENUM, type ToolModeType } from "@/utils/constants";
+import AgentNode from "./custom-nodes/agent/node";
 import StartNode from "./custom-nodes/start/node";
 import NodePanel from "./node-panel";
 import WorkflowControls from "./workflow-controls";
@@ -42,6 +43,7 @@ export default function WorkflowCanvas() {
 
   const nodeTypes = {
     [NodeTypeEnum.START]: StartNode,
+    [NodeTypeEnum.AGENT]: AgentNode,
   };
 
   const onNodesChange = useCallback(
@@ -88,6 +90,9 @@ export default function WorkflowCanvas() {
     },
     [screenToFlowPosition],
   );
+
+  console.log("All Nodes", nodes);
+  console.log("All Edges", edges);
 
   return (
     <>
